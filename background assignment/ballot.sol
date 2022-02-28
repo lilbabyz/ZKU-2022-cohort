@@ -49,21 +49,19 @@ contract Ballot {
             }));
         }
     }
+
+
     
     /** 
-     * I modified the function to take a list of 10 addresses and to give them the right to
-     vote based on if all the requirements are true.
+     * I used an if statement to check and make sure all requirements are met then i used a for loop to loop
+     through each address and assign a weight value of one to them.
      */
 
     function giveRightToVote(address[] memory voter) public {
-          
-        //using a for loop to give right to vote
         for (uint i = 0; i < voter.length; i++){ 
-
-        require(msg.sender == chairperson && !voters[voter[i]].voted && 
-        voters[voter[i]].weight == 0, "Requirements not met.");
-
-        voters[voter[i]].weight = 1; // giving weight value of 1 to each address
+            if(msg.sender == chairperson && !voters[voter[i]].voted && voters[voter[i]].weight == 0 ){
+        voters[voter[i]].weight = 1; 
+            }
     }
     }    
 
